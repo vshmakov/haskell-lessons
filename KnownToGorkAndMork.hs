@@ -8,4 +8,8 @@ class KnownToMork a where
 
 class (KnownToGork a, KnownToMork a) => KnownToGorkAndMork a where
     stompOrStab :: a -> a
-    stompOrStab = undefined
+    stompOrStab a
+      | doesEnrageGork a && doesEnrageMork a = stomp (stab a)
+      | doesEnrageMork a = stomp a
+      | doesEnrageGork a = stab a
+      | otherwise = a
