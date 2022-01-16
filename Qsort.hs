@@ -1,4 +1,4 @@
 qsort :: Ord a => [a] -> [a]
 qsort [] = []
-qsort (a : as) = qsort (filterWith (>)) ++ [a] ++ filterWith (==) ++ qsort (filterWith (<))
-  where filterWith compare = filter (compare a) as
+qsort as@(a : _) = qsort (filterWith (<)) ++ filterWith (==) ++ qsort (filterWith (>))
+  where filterWith compare = filter ((flip compare) a) as
