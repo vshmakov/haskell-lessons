@@ -1,6 +1,3 @@
 perms :: [a] -> [[a]]
-perms []     = [[]]
-perms (x:xs) = [y | p <- perms xs, y <- interleave p]
-  where
-    interleave []     = [[x]]
-    interleave (y:ys) = (x:y:ys) : map (y:) (interleave ys)
+perms [] = [[]]
+perms (a : as) = [take i xs ++ [a] ++ drop i xs | xs <- perms as,  i <- [0..length xs]]
